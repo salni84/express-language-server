@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 let mysql = require('mysql');
 
@@ -10,6 +9,7 @@ let con = mysql.createConnection({
     port: process.env.PGPORT,
     ssl: true,
 });
+
 
 con.connect(function(err) {
     if (err) throw err;
