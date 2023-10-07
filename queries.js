@@ -1,14 +1,20 @@
 require('dotenv').config();
 let mysql = require('mysql');
 
-let con = mysql.createConnection({
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
-    database: process.env.PGDATABASE,
-    password: process.env.PGPASSWORD,
-    port: process.env.PGPORT,
-    ssl: true,
-});
+let con;
+//make connection
+if (process.env.JAWSDB_URL){
+    con = mysql.createConnection(process.env.JAWSDB_URL);
+}else{
+    con = mysql.createConnection({
+        user: process.env.PGUSER,
+        host: process.env.PGHOST,
+        database: process.env.PGDATABASE,
+        password: process.env.PGPASSWORD,
+        port: process.env.PGPORT,
+        ssl: true,
+    })
+}
 
 
 con.connect(function(err) {
