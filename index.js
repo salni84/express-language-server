@@ -3,7 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const db = require('./queries')
-const port = 3000
+const PORT = process.env.PORT || 3000;
 let cors = require('cors');
 app.use(cors(
     {credentials: true}
