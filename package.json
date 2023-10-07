@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "build": "webpack"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
