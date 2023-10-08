@@ -24,12 +24,13 @@ con.connect(function(err) {
 
 
 const getWords = (request, response) => {
-    con.query('SELECT * FROM lkncqisg5th5d27z.language', (error, results) => {
+    con.query('SELECT * FROM language', (error, results) => {
         if (error) {
             throw error
         }
         response.status(200).json(results)
     })
+    return response
 }
 
 const createWord = (request, response) => {
@@ -38,11 +39,21 @@ const createWord = (request, response) => {
         translation,
         audio
     } = request.body
-    con.query('INSERT INTO lkncqisg5th5d27z.language (word, translation, audio) VALUES (?, ?, ?)', [word, translation, audio], (error, results) => {
+    con.query('INSERT INTO language (word, translation, audio) VALUES (?, ?, ?)', [word, translation, audio], (error, results) => {
         if (error) {
             throw error
         }
-        response.status(201).send(`User added with ID: ${results.id}`)
+        response.status(201).send( results)
+    })
+}
+
+const deleteWord = (request, response) => {
+    let word = { id: request.params.id }
+    con.query('DELETE FROM language WHERE id = ' + request.params.id, word, (error, results) => {
+        if (error){
+            throw error
+        }
+        response.status(200).send(results)
     })
 }
 
@@ -50,4 +61,5 @@ const createWord = (request, response) => {
 module.exports = {
     getWords,
     createWord,
+    deleteWord
 }

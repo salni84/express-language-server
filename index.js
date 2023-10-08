@@ -25,7 +25,7 @@ app.get('/word/all', db.getWords)
 //app.get('/words/:id', db.getWordsById())
 app.post('/word/new', db.createWord)
 //app.put('/word/:id', db.updateWord)
-//app.delete('/word/:id', db.deleteUser)
+app.delete('/word/:id', db.deleteWord)
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
 })
