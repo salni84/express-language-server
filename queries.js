@@ -37,9 +37,8 @@ const createWord = (request, response) => {
     const {
         word,
         translation,
-        audio
     } = request.body
-    con.query('INSERT INTO language (word, translation, audio) VALUES (?, ?, ?)', [word, translation, audio], (error, results) => {
+    con.query('INSERT INTO language (word, translation, audio) VALUES (?, ?)', [word, translation], (error, results) => {
         if (error) {
             throw error
         }
